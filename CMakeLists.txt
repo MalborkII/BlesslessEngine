@@ -25,7 +25,7 @@ target_include_directories(EngineCore PUBLIC
 
 # BlesslessEngine.exe — exe Python-редактора и точка входа движка
 add_executable(BlesslessEngine WIN32
-  Engine/Source/Programs/BlesslessEngine/BlesslessEngine.cpp
+  Editor/BlesslessEngine.cpp
 )
 target_compile_definitions(BlesslessEngine PRIVATE _UNICODE UNICODE)
 target_link_libraries(BlesslessEngine PRIVATE EngineCore Shell32)

@@ -19,7 +19,10 @@ namespace BE
 
     bool Engine_LoadModules()
     {
-        return FModuleManager::Get().LoadAllConfiguredModules(GInitParams.bIsEditor);
+        return FModuleManager::Get().LoadAllConfiguredModules(
+            GInitParams.bIsEditor,
+            GInitParams.ProjectFilePath
+        );
     }
 
     bool Engine_InitEditor()

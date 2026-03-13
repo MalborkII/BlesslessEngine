@@ -26,9 +26,9 @@ namespace BE
         // Singleton-style access (simple for initial version).
         static FModuleManager& Get();
 
-        // Discover descriptors in Engine/Modules and project modules,
+        // Discover descriptors in Modules/* and project modules,
         // resolve dependencies and load required modules.
-        bool LoadAllConfiguredModules(bool bIsEditor);
+        bool LoadAllConfiguredModules(bool bIsEditor, const char* projectFilePath);
 
         // Shutdown in reverse dependency order.
         void ShutdownModules();
