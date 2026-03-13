@@ -1,9 +1,11 @@
 #include "EngineCore.h"
 #include "ModuleManager.h"
+#include "Scene.h"
 
 namespace BE
 {
     static EngineInitParams GInitParams{};
+    static Scene*           GActiveScene { nullptr };
 
     bool Engine_PreInit(const EngineInitParams& params)
     {
@@ -42,12 +44,40 @@ namespace BE
     int Engine_Run(EngineRunMode mode)
     {
         (void)mode;
-        // TODO: implement main loop driving worlds and ticking C# runtime and editor.
+        // TODO: implement main loop driving scenes, renderer and C# runtime.
         return 0;
+    }
+
+    Scene* Engine_CreateScene()
+    {
+        if (GActiveScene)
+        {
+            delete GActiveScene;
+            GActiveScene = nullptr;
+        }
+        GActiveScene = new Scene();
+        return GActiveScene;
+    }
+
+    void Engine_DestroyScene(Scene* scene)
+    {
+        if (!scene)
+            return;
+
+        if (scene == GActiveScene)
+        {
+            delete GActiveScene;
+            GActiveScene = nullptr;
+        }
+        else
+        {
+            delete scene;
+        }
     }
 
     void Engine_Shutdown()
     {
+        Engine_DestroyScene(GActiveScene);
         FModuleManager::Get().ShutdownModules();
         // TODO: tear down core systems, logging, etc.
     }

@@ -5,6 +5,60 @@
 
 extern "C"
 {
+    // Типы-идентификаторы для сущностей в сцене.
+    typedef unsigned long long BE_SceneId;
+    typedef unsigned long long BE_ObjectId;
+
+    // Scene lifecycle
+    __declspec(dllexport) BE_SceneId BE_CreateScene();
+    __declspec(dllexport) void       BE_DestroyScene(BE_SceneId scene);
+    __declspec(dllexport) void       BE_Scene_Update(BE_SceneId scene, float deltaTime);
+
+    // GameObject lifecycle
+    __declspec(dllexport) BE_ObjectId BE_Scene_CreateGameObject(BE_SceneId scene, const char* name);
+    __declspec(dllexport) void        BE_Scene_DestroyGameObject(BE_SceneId scene, BE_ObjectId objectId);
+
+    // Transform access
+    __declspec(dllexport) void BE_GameObject_GetTransform(
+        BE_ObjectId objectId,
+        float* outPosition3,
+        float* outRotationQuat4,
+        float* outScale3
+    );
+
+    __declspec(dllexport) void BE_GameObject_SetTransform(
+        BE_ObjectId objectId,
+        const float* position3,
+        const float* rotationQuat4,
+        const float* scale3
+    );
+
+    // Managed (C#) scripts
+    typedef void(__stdcall* BE_Managed_ScriptStartCallback)(unsigned long long instanceId);
+    typedef void(__stdcall* BE_Managed_ScriptUpdateCallback)(unsigned long long instanceId, float deltaTime);
+    typedef void(__stdcall* BE_Managed_ScriptDestroyCallback)(unsigned long long instanceId);
+
+    // Регистрирует коллбеки, которые C++ будет вызывать для C# скриптов.
+    __declspec(dllexport) void BE_SetManagedScriptCallbacks(
+        BE_Managed_ScriptStartCallback   onStart,
+        BE_Managed_ScriptUpdateCallback  onUpdate,
+        BE_Managed_ScriptDestroyCallback onDestroy
+    );
+
+    // Привязывает C#-инстанс (managedInstanceId) как Script-компонент к GameObject.
+    __declspec(dllexport) BE_ObjectId BE_GameObject_AddManagedScript(
+        BE_ObjectId        objectId,
+        unsigned long long managedInstanceId
+    );
+}
+
+#pragma once
+
+// C API, через который C# runtime (Game.dll) взаимодействует с C++ ядром.
+// Предполагается использование P/Invoke с dllimport на стороне C#.
+
+extern "C"
+{
     // Типы-идентификаторы для объектов в ядре.
     typedef unsigned long long BE_ObjectId;
     typedef unsigned long long BE_WorldId;

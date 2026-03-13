@@ -5,6 +5,7 @@
 
 namespace BE
 {
+    class Scene;
     struct EngineInitParams
     {
         const char* ProjectFilePath;   // path to project.bless
@@ -36,6 +37,10 @@ namespace BE
 
     // Main ticking loop entrypoint (for standalone runtime).
     int Engine_Run(EngineRunMode mode);
+
+    // Scene helpers
+    Scene* Engine_CreateScene();
+    void   Engine_DestroyScene(Scene* scene);
 
     // Clean shutdown for engine and all loaded modules.
     void Engine_Shutdown();
