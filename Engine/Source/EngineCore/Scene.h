@@ -26,8 +26,8 @@ namespace BE
         const std::vector<Light*>&        GetLights() const { return Lights; }
 
     private:
-        friend void ::BE::Scene_OnComponentAdded(Scene* scene, GameObject* obj, Component* c);
-        friend void ::BE::Scene_OnComponentRemoved(Scene* scene, GameObject* obj, Component* c);
+        friend void Scene_OnComponentAdded(Scene* scene, GameObject* obj, Component* c);
+        friend void Scene_OnComponentRemoved(Scene* scene, GameObject* obj, Component* c);
 
         void OnComponentAdded(GameObject* obj, Component* c);
         void OnComponentRemoved(GameObject* obj, Component* c);

@@ -1,7 +1,7 @@
 {
-  "Name": "Example",
+  "Name": "Logger",
   "Type": "Engine",
-  "Binary": "BE-Example.dll",
+  "Binary": "BE-Logger.dll",
   "EditorOnly": false,
   "RuntimeOnly": false,
   "RequiredOnStart": true,

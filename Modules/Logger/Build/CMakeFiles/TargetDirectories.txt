@@ -1,0 +1,3 @@
+D:/Work/BlesslessArts/BlesslessEngine/Modules/Logger/Build/CMakeFiles/LoggerModule.dir
+D:/Work/BlesslessArts/BlesslessEngine/Modules/Logger/Build/CMakeFiles/ALL_BUILD.dir
+D:/Work/BlesslessArts/BlesslessEngine/Modules/Logger/Build/CMakeFiles/ZERO_CHECK.dir

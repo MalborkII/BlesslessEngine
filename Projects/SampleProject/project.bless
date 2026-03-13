@@ -3,7 +3,7 @@
   "EngineVersion": "0.1.0",
   "GameAssembly": "Game/Game.dll",
   "GameEditorAssembly": "Game/GameEditor.dll",
-  "Modules": [],
+  "Modules": ["Logger"],
   "ContentRoot": "Content",
   "ConfigRoot": "Config"
 }

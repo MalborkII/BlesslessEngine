@@ -1,0 +1,10 @@
+^D:\WORK\BLESSLESSARTS\BLESSLESSENGINE\MODULES\LOGGER\BUILD\CMAKEFILES\8C7874142D585A35F7A3EAB91D4FDEF1\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Work/BlesslessArts/BlesslessEngine/Modules/Logger -BD:/Work/BlesslessArts/BlesslessEngine/Modules/Logger/Build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/Work/BlesslessArts/BlesslessEngine/Modules/Logger/Build/LoggerModule.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

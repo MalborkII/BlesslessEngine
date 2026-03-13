@@ -33,15 +33,17 @@ def main() -> None:
     project = load_project(project_path)
     project_name = project.get("ProjectName", "BlesslessEngine") if project else "BlesslessEngine"
     project_dir = str(Path(project_path).resolve().parent) if project_path else ""
+    project_modules = project.get("Modules", []) if project else []
 
     import tkinter
+    import importlib.util
 
     root = tkinter.Tk()
     root.title(f"{project_name} — BlesslessEditor")
     root.geometry("1280x720")
     root.minsize(800, 600)
 
-    # Центральная область (пустое окно)
+    # Центральная область
     frame = tkinter.Frame(root, bg="#1e1e1e")
     frame.pack(fill=tkinter.BOTH, expand=True)
 
@@ -52,7 +54,26 @@ def main() -> None:
         bg="#1e1e1e",
         font=("Segoe UI", 12),
     )
-    label.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
+    label.place(relx=0.3, rely=0.5, anchor=tkinter.CENTER)
+
+    # Подключение editor-модулей по списку Modules из project.bless.
+    # Для модуля "Logger" ожидается Python-код в Modules/Logger/Editor/editor.py с функцией register(root, project_dir, project).
+    modules_root = Path(__file__).resolve().parent.parent.parent / "Modules"
+    for module_name in project_modules:
+        editor_file = modules_root / module_name / "Editor" / "editor.py"
+        if not editor_file.exists():
+            continue
+        spec = importlib.util.spec_from_file_location(f"{module_name}_editor", editor_file)
+        if spec is None or spec.loader is None:
+            continue
+        plugin = importlib.util.module_from_spec(spec)
+        try:
+            spec.loader.exec_module(plugin)
+        except Exception:
+            continue
+        register = getattr(plugin, "register", None)
+        if callable(register):
+            register(root=root, project_dir=project_dir, project=project)
 
     root.mainloop()
 

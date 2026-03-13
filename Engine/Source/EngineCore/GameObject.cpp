@@ -1,5 +1,6 @@
 #include "GameObject.h"
 
+#include "Scene.h"
 #include "Script.h"
 
 namespace BE
@@ -37,8 +38,6 @@ namespace BE
     {
         if (OwnerScene)
         {
-            // Defined in Scene.cpp
-            extern void Scene_OnComponentAdded(Scene* scene, GameObject* obj, Component* c);
             Scene_OnComponentAdded(OwnerScene, this, c);
         }
     }
@@ -47,7 +46,6 @@ namespace BE
     {
         if (OwnerScene)
         {
-            extern void Scene_OnComponentRemoved(Scene* scene, GameObject* obj, Component* c);
             Scene_OnComponentRemoved(OwnerScene, this, c);
         }
     }
