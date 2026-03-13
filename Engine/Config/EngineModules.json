@@ -1,0 +1,19 @@
+{
+  "$schema": "https://example.com/blessless/engine-modules.schema.json",
+  "EngineVersion": "0.1.0",
+  "EngineModules": [
+    // Engine-level core modules that should always be loaded.
+    "Rendering",
+    "Physics",
+    "Audio",
+    "Input",
+    "AssetSystem"
+  ],
+  "EditorModules": [
+    // Editor-only C++ modules (e.g., editor-time tools).
+  ],
+  "RuntimeModules": [
+    // Optional runtime-only feature modules.
+  ]
+}
+

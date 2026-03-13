@@ -1,0 +1,10 @@
+{
+  "ProjectName": "SampleProject",
+  "EngineVersion": "0.1.0",
+  "GameAssembly": "Game/Game.dll",
+  "GameEditorAssembly": "Game/GameEditor.dll",
+  "Modules": [],
+  "ContentRoot": "Content",
+  "ConfigRoot": "Config"
+}
+

@@ -1,0 +1,13 @@
+{
+  "Name": "Example",
+  "Type": "Engine",
+  "Binary": "BE-Example.dll",
+  "EditorOnly": false,
+  "RuntimeOnly": false,
+  "RequiredOnStart": true,
+  "MinEngineVersion": "0.1.0",
+  "MaxEngineVersion": null,
+  "Dependencies": [
+  ]
+}
+

@@ -1,0 +1,17 @@
+# Build artifacts
+/Engine/Binaries/
+/Engine/Intermediate/
+/Projects/*/Binaries/
+/Projects/*/Intermediate/
+/Projects/*/Saved/
+/build/
+
+# Visual Studio
+/.vs/
+*.vcxproj.user
+*.opendb
+*.VC.db
+
+# Logs
+*.log
+
