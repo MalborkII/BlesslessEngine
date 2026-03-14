@@ -1,6 +1,6 @@
 #pragma once
 
-#include "EngineCore.h"
+#include "Engine.h"
 #include "ModuleInterface.h"
 
 // High-level C++ module manager responsible for loading/unloading C++ DLLs

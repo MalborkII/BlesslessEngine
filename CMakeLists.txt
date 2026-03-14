@@ -11,21 +11,24 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${BINARIES_OUTPUT_DIR})
 
 # Статическая библиотека ядра движка (EngineCore)
 add_library(EngineCore STATIC
-  Engine/Source/EngineCore/EngineLoop.cpp
-  Engine/Source/EngineCore/Scene.cpp
-  Engine/Source/EngineCore/GameObject.cpp
-  Engine/Source/EngineCore/Transform.cpp
-  Engine/Source/EngineCore/ModuleManager.cpp
+  Engine/Source/Engine/Core/Private/Engine.cpp
+  Engine/Source/Engine/ModuleManager/Private/ModuleManager.cpp
+  Engine/Source/Engine/Scene/Private/Scene.cpp
+  Engine/Source/Engine/Scene/Private/GameObject.cpp
+  Engine/Source/Engine/Scene/Private/Transform.cpp
+  
 )
 target_include_directories(EngineCore PUBLIC
-  ${CMAKE_SOURCE_DIR}/Engine/Source/EngineCore
-  ${CMAKE_SOURCE_DIR}/Engine/Source/ManagedBridge
-  ${CMAKE_SOURCE_DIR}/Engine/Source/EngineEditorBridge
+  ${CMAKE_SOURCE_DIR}/Engine/Source/Engine/Core/Public
+  ${CMAKE_SOURCE_DIR}/Engine/Source/Engine/ModuleManager/Public
+  ${CMAKE_SOURCE_DIR}/Engine/Source/Engine/Scene/Public
+  ${CMAKE_SOURCE_DIR}/Engine/Source/Engine/Renderer
+  ${CMAKE_SOURCE_DIR}/Engine/Source/EngineBridge
 )
 
 # BlesslessEngine.exe — exe Python-редактора и точка входа движка
 add_executable(BlesslessEngine WIN32
-  Editor/BlesslessEngine.cpp
+  Editor/Source/BlesslessEngine.cpp
 )
 target_compile_definitions(BlesslessEngine PRIVATE _UNICODE UNICODE)
 target_link_libraries(BlesslessEngine PRIVATE EngineCore Shell32)

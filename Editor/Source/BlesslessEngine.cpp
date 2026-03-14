@@ -16,7 +16,7 @@
 #include <vector>
 #include <cstdlib>
 
-#include "EngineCore.h"
+#include "Engine.h"
 
 static std::string GetExePath() {
     char buf[MAX_PATH];
